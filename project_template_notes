@@ -1,0 +1,58 @@
+app.json
+{
+  "name": "KWK Flowchart Application",
+  "description": "A choose your own adventure, flow chart, style application.",
+  "repository": "https://github.com/learn-co-curriculum/kwk-l1-flowchart-project-template",
+  "keywords": ["sinatra", "kodewithklossy"]
+}
+
+config.learn-co-curriculumrequire './config/environment'
+
+run ApplicationController
+
+rakefile
+ENV["SINATRA_ENV"] ||= "development"
+
+require_relative './config/environment'
+
+task :console do
+  puts "Loaded application environment. Type reload! to reload the code."
+  def reload!
+    load_all 'app/models'
+    load_all 'data/seed'
+  end
+
+  Pry.start
+end
+
+rspec
+--format documentation
+--color
+--fail-fast
+
+gemfile
+source 'http://rubygems.org'
+
+gem 'sinatra'
+gem 'rake'
+gem 'require_all'
+
+group :development do
+  gem 'shotgun'
+end
+
+group :development, :test do
+  gem 'pry'
+end
+
+group :production do
+  gem 'thin'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'capybara'
+  gem 'rack-test'
+end
+
+
